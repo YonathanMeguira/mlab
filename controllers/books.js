@@ -1,8 +1,6 @@
-const config = require('../config/mongo.js');
 const mongodb = require("mongodb");
 
 
-const mongoConfig = config.mongoConfig;
 
 
 listBooks = (req, res) => {
