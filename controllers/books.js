@@ -65,4 +65,4 @@ editBook = (req, res) => {
 
 };
 
-module.exports = {listBooks, addBook};
+module.exports = {listBooks, addBook, editBook};
