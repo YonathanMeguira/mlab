@@ -11,8 +11,6 @@ listBooks = (req, res) => {
             console.log(err);
             process.exit(1);
         }
-
-        // Save database object from the callback for reuse.
         db = client.db();
         db.collection("books").find({}).toArray(function(err, docs) {
             if (err) {
@@ -27,7 +25,22 @@ listBooks = (req, res) => {
 };
 
 addBook = (req, res) => {
+    const newBook = req.body;
+    mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
+        if (err) {
+            console.log(err);
+            process.exit(1);
+        }
+        db = client.db();
+        db.collection("books").insertOne(newBook, function(err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to create new contact.");
+            } else {
+                res.status(201).json(doc.ops[0]);
+            }
+        });
 
+    });
 };
 
 
