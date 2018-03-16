@@ -26,7 +26,7 @@ app.all('*', function (req, res, next) {
 /* API */
 app.get('/books', bookController.listBooks);
 app.post('/newBook', bookController.addBook);
-
+app.put('/edit', bookController.editBook);
 
 /* Make the app 'listen' */
 app.listen(app.get('port'), () => {
